@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidConnect Slack Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .sidebar {
+            transition: width 0.3s ease;
+            overflow: hidden;
+        }
+
+        .sidebar.shrink {
+            width: 70px;
+        }
+
+        .sidebar h3 {
+            transition: opacity 0.3s ease;
+            opacity: 1;
+            white-space: nowrap;
+        }
+
+        .sidebar.shrink h3 {
+            opacity: 1;
+        }
+
+        .sidebar ul, .sync-calendar {
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .sidebar.shrink ul, .sidebar.shrink .sync-calendar {
+            opacity: 0;
+        }
+
+        .toggle-btn {
+            background-color: #4A154B;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .message.user {
+            background-color: #d1e7dd;
+        }
+
+        .message.response {
+            background-color: #f8d7da;
+        }
+
+        .message-bar-input {
+            display: flex;
+            margin: 10px 0;
+        }
+
+        .message-bar-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .message-bar-input button {
+            padding: 10px;
+            background-color: #4A154B;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .video-placeholder {
+            margin: 20px 0;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        KidConnect Slack Page
+    </div>
+    <div class="container">
+        <div class="sidebar" id="workspace-sidebar">
+            <button class="toggle-btn" onclick="toggleSidebar('workspace-sidebar')">Toggle</button>
+            <h3>Workspace</h3>
+            <ul>
+                <li>Work</li>
+                <li>KidConnect</li>
+                <li>DMs</li>
+                <li>Projects</li>
+            </ul>
+        </div>
+        <div class="sidebar" id="channels-sidebar">
+            <button class="toggle-btn" onclick="toggleSidebar('channels-sidebar')">Toggle</button>
+            <h3>Channels</h3>
+            <ul>
+                <li>#general</li>
+                <li>#random</li>
+                <li>#kid-connect</li>
+            </ul>
+
+            <div class="sync-calendar">
+                <h3>Sync Calendar</h3>
+                <label for="calendar">Google Calendar URL:</label>
+                <input type="text" id="calendar" placeholder="Enter calendar URL">
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-header">
+                <h2>#kid-connect</h2>
+            </div>
+            <div class="main-content">
+                <div class="message user">
+                    <strong>Kid:</strong> Can I play video games?
+                </div>
+                <div class="message response">
+                    <strong>Mom:</strong> After you do your chores.
+                </div>
+
+                <div class="video-placeholder">
+                    [Video Placeholder: "Chore Instructions"]
+                </div>
+            </div>
+            <div class="message-bar-input">
+                <input type="text" placeholder="Type a message...">
+                <button>Send</button>
+            </div>
+            <div class="message-bar">
+                <div>Sliding message: "No new messages"</div>
+                <div class="busy-indicator"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar(id) {
+            const sidebar = document.getElementById(id);
+            sidebar.classList.toggle('shrink');
+        }
+    </script>
+</body>
+</html>
